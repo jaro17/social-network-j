@@ -1,0 +1,68 @@
+<nav class="panel">
+  <p class="panel-heading has-background-white has-text-weight-medium">
+    Create Account
+  </p>
+  <form [formGroup]="createAccountForm">
+    <div class="panel-block">
+      <div class="control">
+        <input
+          formControlName="email"
+          name="email"
+          id="email"
+          class="input"
+          type="email"
+          placeholder="Enter your email">
+
+        <div class="error" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+          <div *ngIf="email.errors?.['required']">
+            <p class="help is-danger">Email is required!</p>
+          </div>
+          <div *ngIf="email.errors?.['email']">
+            <p class="help is-danger">Please enter a valid email!</p>
+          </div>
+        </div>
+
+        <input
+          formControlName="username"
+          name="username"
+          id="username"
+          class="input"
+          type="text"
+          placeholder="Enter your username">
+
+        <div class="error" *ngIf="username?.invalid && (username?.dirty || username?.touched)">
+          <div *ngIf="username.errors?.['required']">
+            <p class="help is-danger">Username is required!</p>
+          </div>
+          <div *ngIf="username.errors?.['maxlength']">
+            <p class="help is-danger">Username should have maximum 10 characters</p>
+          </div>
+        </div>
+
+        <input
+          formControlName="password"
+          name="password"
+          id="password"
+          class="input"
+          type="password"
+          placeholder="Enter your password">
+
+        <div class="error" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+          <div *ngIf="password.errors?.['required']">
+            <p class="help is-danger">Username is required!</p>
+          </div>
+          <div *ngIf="password.errors?.['minlength']">
+            <p class="help is-danger">Password should have minimum 6 characters</p>
+          </div>
+        </div>
+      </div>
+      <button (click)="create()" [disabled]="!createAccountForm.valid" class="button is-light"
+              routerLink="create-account">Create Account
+      </button>
+
+      <p id="or">OR</p>
+
+      <button class="button is-white" routerLink="/login">Login</button>
+    </div>
+  </form>
+</nav>
